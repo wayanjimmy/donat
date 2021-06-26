@@ -1,4 +1,5 @@
 import Adafruit_DHT
+import time
 
 from datetime import datetime
 
@@ -22,10 +23,10 @@ while True:
 
     if humidity is not None and temperature is not None:
         print("Temp={0:0.1f}*C  Humidity={1:0.1f}%".format(temperature, humidity))
-	sequence = ["mem,host=host1 humidity={0:0.1f}".format(humidity), "mem,host=host1 temperature={0:0.1f}".format(temperature)]
-	write_api.write(bucket, org, sequence)
+        sequence = ["mem,host=host1 humidity={0:0.1f}".format(
+            humidity), "mem,host=host1 temperature={0:0.1f}".format(temperature)]
+        write_api.write(bucket, org, sequence)
     else:
         print("Failed to retrieve data from humidity sensor")
 
     time.sleep(30)
-
